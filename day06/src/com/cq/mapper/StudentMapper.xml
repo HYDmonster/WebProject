@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 这里的namespace是mapper接口的路径 -->
+<mapper namespace="com.cq.mapper.StudentMapper">
+	<!-- parameterType是输入参数类型，resultType是输出参数类型，select表示查询,namespace可随意 -->
+	<select id="selectStuById" parameterType="String" resultType="com.cq.Servlet.Student">
+		select * from Student where stuNo=#{aaa}
+	</select>
+	<select id="selectByFirstName" parameterType="java.lang.String" resultType="com.cq.Servlet.Student">
+		select * from Student where stuName like '${value}%'
+	</select>
+	<insert id="addStudent" parameterType="com.cq.Servlet.Student">
+		insert into Student values(#{stuNo},#{stuName},#{stuSex},#{stuAge},#{stuMajor})
+	</insert>
+	<delete id="deleteStudentById" parameterType="java.lang.String">
+		delete from Student where stuNo=#{stuid}
+	</delete>
+	<update id="updateStudentById" parameterType="com.cq.Servlet.Student">
+		update Student set stuNo=#{stuNo},stuName=#{stuName},
+		stuSex=#{stuSex},stuAge=#{stuAge},stuMajor=#{stuMajor} where stuNo=#{stuNo}
+	</update>
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 和spring整合后 environments配置将废除-->
+	<environments default="development">
+		<environment id="development">
+		<!-- 使用jdbc事务管理-->
+			<transactionManager type="JDBC" />
+		<!-- 数据库连接池-->
+			<dataSource type="POOLED">
+				<property name="driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+				<property name="url" value="jdbc:sqlserver://localhost:1433;DatabaseName=Student" />
+				<property name="username" value="sa" />
+				<property name="password" value="123456" />
+			</dataSource>
+		</environment>
+	</environments>
+	 <!-- <mappers>
+		<mapper resource="com/cq/poMapping/Student.xml"/>
+	</mappers> -->
+	  
+	<mappers>
+		<!-- 
+		批量加载mapper，遵循的规范：
+		1.使用mapper接口方式
+		2.mapper接口及其对应的mapper.xml文件在同一目录且名称一致
+		 -->
+		<package name="com.cq.mapper"/>
+	</mappers>
+</configuration>
